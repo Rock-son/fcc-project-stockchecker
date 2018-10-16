@@ -58,16 +58,16 @@ exports.updateOne = function(req, res) {
 	Promise.all([stockDbPromise, stockApiPromise])
 		.then(function(values) {
 			const result = values.map(item => item.data ? item.data : item);
-			const stockData = result[0].length ? ({ stock: stock, likes: [] }) : result[0].slice(); // PREPARE DATA FOR INSERTION IF NEEDED
+			const stockData = result[0].length ? result[0].slice() : ([{ stock: stock, likes: [] }]); // PREPARE DATA FOR INSERTION IF NEEDED
 			const stockPromises = [];
 
 			if (stockData) {
-					const likes = stockData.likes ? stockData.likes : [];
+					const likes = stockData[0].likes;
 					const updatedLikes = likes.includes(ip) ? likes : likes.concat([ip]);
 
 					StockModel.findOneAndUpdate(
-						{ stock: stockData.stock },											//	WHAT
-						{ stock: stockData.stock, likes: userLiked ? updatedLikes : likes },	//	UPDATE
+						{ stock: stockData[0].stock },											//	WHAT
+						{ stock: stockData[0].stock, likes: userLiked ? updatedLikes : likes },	//	UPDATE
 						{ upsert: true, setDefaultsOnInsert: true, new: true },			// 	OPTIONS
 						function(err, doc) {
 							if (err) { return next(err); }
