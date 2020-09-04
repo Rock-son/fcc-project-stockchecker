@@ -9,7 +9,7 @@
 		"test": "cross-env NODE_ENV=test nodemon --exec node server.js"
 	},
 	"dependencies": {
-		"axios": "^0.18.0",
+		"axios": "^0.18.1",
 		"body-parser": "^1.15.2",
 		"chai": "^3.5.0",
 		"chai-http": "^4.2.0",
