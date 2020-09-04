@@ -36,6 +36,6 @@
 	"devDependencies": {
 		"cross-env": "^5.2.0",
 		"dotenv": "^6.1.0",
-		"mongoose": "^5.3.4"
+		"mongoose": "^5.7.5"
 	}
 }
