@@ -20,8 +20,8 @@ const db = require("../db/controller");
 const CONNECTION_STRING = process.env.DB; //MongoClient.connect(CONNECTION_STRING, function(err, db) {});
 
 mongoose.Promise = global.Promise;
-mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, autoIndex: false });
-mongoose.set('useFindAndModify', false);
+mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, autoIndex: false, useUnifiedTopology: true });
+//mongoose.set('useFindAndModify', false);
 
 
 module.exports = function (app) {
